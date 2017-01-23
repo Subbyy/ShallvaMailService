@@ -49,7 +49,7 @@ namespace ShallvaMailService.Actions
                             client.Connect(clientResource.Host, clientResource.Port);
                             client.AuthenticationMechanisms.Remove("XOAUTH2");
                             client.Authenticate(clientResource.EmailFrom, clientResource.EmailFromPassword);
-
+                            
                             item.TryNumber++;
                             client.Send(message);
                             isSuccess = true;
@@ -65,8 +65,8 @@ namespace ShallvaMailService.Actions
                         // try again up to 3 times
                         if (item.TryNumber < 3)
                         {
+                            // NOTE: next try will be on the next schedule task
                             Console.WriteLine($"Try number: {item.TryNumber}");
-                            i--;
                         }
                         else
                         {
