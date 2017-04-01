@@ -24,14 +24,17 @@ namespace ShallvaMailService.Actions
                     var message = new MimeMessage();
                     message.From.Add(new MailboxAddress(clientResource.EmailFromName, clientResource.EmailFrom));
                     // TODO: change clientResource.* to item.*
-                    message.To.Add(new MailboxAddress(clientResource.ToTest));
+                    var toAddressList = clientResource.ToTest.Split(',').Select(x => new MailboxAddress(x));
+                    message.To.AddRange(toAddressList);
                     if (!string.IsNullOrEmpty(item.CC))
                     {
-                        message.Cc.Add(new MailboxAddress(clientResource.ToTest));
+                        var toCCAddressList = clientResource.ToTest.Split(',').Select(x => new MailboxAddress(x));
+                        message.Cc.AddRange(toCCAddressList);
                     }
                     if (!string.IsNullOrEmpty(item.BCC))
                     {
-                        message.Bcc.Add(new MailboxAddress(clientResource.ToTest));
+                        var toBCCAddressList = clientResource.ToTest.Split(',').Select(x => new MailboxAddress(x));
+                        message.Bcc.AddRange(toBCCAddressList);
                     }
                     message.Subject = item.Subject;
                     BodyBuilder bodyBuilder = new BodyBuilder();
@@ -41,7 +44,7 @@ namespace ShallvaMailService.Actions
                     bodyBuilder.HtmlBody = string.Format(item.Body.Trim(), image.ContentId);
 
                     message.Body = bodyBuilder.ToMessageBody();
-                                        
+
                     try
                     {
                         using (SmtpClient client = new SmtpClient())
@@ -49,7 +52,7 @@ namespace ShallvaMailService.Actions
                             client.Connect(clientResource.Host, clientResource.Port);
                             client.AuthenticationMechanisms.Remove("XOAUTH2");
                             client.Authenticate(clientResource.EmailFrom, clientResource.EmailFromPassword);
-                            
+
                             item.TryNumber++;
                             client.Send(message);
                             isSuccess = true;

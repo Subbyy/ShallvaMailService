@@ -9,7 +9,7 @@ namespace ShallvaMailService
     {
         public static readonly int MAX_TRIES = 3;
         public static readonly int MAX_SIZE = 10; 
-        public static readonly string CONNECTION_STRING = "Data Source=sql5031.smarterasp.net;Initial Catalog=DB_A11131_shallvatest;User Id=DB_A11131_shallvatest_admin;Password=akO10614@";
+        public static readonly string CONNECTION_STRING = "Data Source=SQL5029.SmarterASP.NET;Initial Catalog=DB_A1A527_shallva;User Id=DB_A1A527_shallva_admin;Password=lTaO456852#;";
         public static readonly string LOGO_PATH = @"C:\Projects\Services\ShallvaMailService\src\ShallvaMailService\Images\logo-shallva.png";
     }
 }

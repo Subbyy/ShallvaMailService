@@ -114,7 +114,7 @@ namespace ShallvaMailService.Resources {
         }
         
         /// <summary>
-        ///    Looks up a localized string similar to subbyy@gmail.com.
+        ///    Looks up a localized string similar to subbyy@gmail.com,lurentech@gmail.com.
         /// </summary>
         public static string ToTest {
             get {
