@@ -1,4 +1,4 @@
-﻿using MailKit.Net.Smtp;
+using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using ShallvaMailService.Models;
@@ -18,7 +18,7 @@ namespace ShallvaMailService
 
             Console.WriteLine("Fetching data...");
             // get active emails
-            EmailActiviyCriteriaModel criteria = new EmailActiviyCriteriaModel { Status = EmailActivityStatus.Active, Size = Consts.MAX_SIZE };
+            EmailActiviyCriteriaModel criteria = new EmailActiviyCriteriaModel { Status = EmailActivityStatus.Active };
             GetEmailsByCriteriaAction action = new GetEmailsByCriteriaAction();
             var emails = action.Run(criteria);
             bool result;

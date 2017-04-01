@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -76,11 +76,11 @@ namespace ShallvaMailService
                             DateTime.TryParse(reader[6].ToString(), out _createdOn);
                             DateTime _sentOn;
                             DateTime.TryParse(reader[8].ToString(), out _sentOn);
-                            
+
                             results.Add(new EmailActivityModel
                             {
                                 Id = _id,
-                                Subject =  !reader.IsDBNull(1) ? (string)reader[1] : string.Empty,
+                                Subject = !reader.IsDBNull(1) ? (string)reader[1] : string.Empty,
                                 Body = !reader.IsDBNull(2) ? (string)reader[2] : string.Empty,
                                 To = !reader.IsDBNull(3) ? (string)reader[3] : string.Empty,
                                 CC = !reader.IsDBNull(4) ? (string)reader[4] : string.Empty,
@@ -100,7 +100,7 @@ namespace ShallvaMailService
                 }
             }
 
-            int count = criteria.Size > 0 ? criteria.Size : Consts.MAX_SIZE;
+            int count = criteria.Size.HasValue ? criteria.Size.Value : Consts.MAX_SIZE;
             return results.Take(count).ToList();
         }
 
